@@ -52,8 +52,9 @@ def analyze():
 
     # Step 5: Return the results
     print("All steps completed successfully. Returning results.")
-    return jsonify({
-        'summary': summary,
-        'responses': responses,
-        'scraped_data': scraped_data
-    })
+    # return jsonify({
+    #     'summary': summary,
+    #     'responses': responses,
+    #     'scraped_data': scraped_data
+    # })
+    return jsonify(responses)  # Directly return the Perplexity response

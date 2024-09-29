@@ -54,22 +54,60 @@
 
 // export default ResultsPage;
 
-import React from "react";
-import Sidebar from "../components/Sidebar";
-import Template from "../components/Template";
+// import React from 'react';
+// import { useLocation } from 'react-router-dom';
+// import Template from '../components/Template';
+
+// const ResultsPage = () => {
+//   const location = useLocation();
+//   const { responses, companyName, valuation } = location.state || {};  // Extract data from location.state
+//   console.log({responses})
+//   return (
+//     <div className="flex h-screen p-4 bg-gray-100">
+//       <div className="w-full">
+//         {/* Display the company name and valuation */}
+//         <h1 className="text-2xl font-bold mb-4">Results for {companyName}</h1>
+//         <p className="text-lg mb-4">Valuation: {valuation} USD</p>
+
+//         {/* Pass the responses data to the Template component */}
+       
+//         <Template responses={responses.data} />
+
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ResultsPage;
+
+
+
+
+import React from 'react';
+import { useLocation } from 'react-router-dom';
+import Template from '../components/Template';
 
 const ResultsPage = () => {
-  return (
-    <div className="flex h-screen">
-      {/* Sidebar */}
-      <Sidebar />
+  const location = useLocation();
+  const { responses, companyName, valuation } = location.state || {};  // Extract data from location.state
 
-      {/* Template Dashboard */}
-      <div className="flex-1 bg-gray-100 p-4 overflow-auto">
-        <Template />
+  // Check if responses exist and log just the 'data' field
+  const responseData = responses?.data || {};  // Extract the 'data' part from responses
+  console.log('Response Data:', responseData);
+
+  return (
+    <div className="flex h-screen p-4 bg-gray-100">
+      <div className="w-full">
+        {/* Display the company name and valuation */}
+        <h1 className="text-2xl font-bold mb-4">Results for {companyName}</h1>
+        <p className="text-lg mb-4">Valuation: {valuation} USD</p>
+
+        {/* Pass the responseData to the Template component */}
+        <Template responses={responseData} />
       </div>
     </div>
   );
 };
 
 export default ResultsPage;
+
