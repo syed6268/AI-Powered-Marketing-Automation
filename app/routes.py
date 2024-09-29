@@ -1,7 +1,7 @@
 # hackmidwestbackend/app/routes.py
 from flask import Blueprint, request, jsonify
 from .scraper.scraper import scrape_data
-from .openai_service.openai_service import get_summary
+from .openai_service.openai_service import get_detailed_summary
 from .perplexity_service.perplexity import get_perplexity_responses
 
 main = Blueprint('main', __name__)
@@ -19,7 +19,8 @@ def analyze():
         _type_: _description_
     """    
     # Step 2: Get summary from OpenAI
-    summary = get_summary(scraped_data['home_page'] + ' ' + scraped_data['about_page'])
+    # summary = get_detailed_summary(scrape_data)
+    summary = "jjj"
     
     # Step 3: Get responses from Perplexity API
     responses = get_perplexity_responses(summary)
