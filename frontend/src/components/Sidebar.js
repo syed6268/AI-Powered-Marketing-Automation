@@ -1,95 +1,44 @@
-// import React, { useState, useEffect } from 'react';
-// import agents from '../assets/agents.jpg'; // Your standard logo
-
-// export default function Sidebar({ companies, onCompanyClick }) {
-//   const [currentCompany, setCurrentCompany] = useState('');
-
-//   return (
-//     <div className="flex flex-col w-64 bg-gray-900 h-screen px-6">
-//       {/* Logo Section */}
-//       <div className="flex h-16 shrink-0 items-center mb-4 mt-6 justify-center">
-//         <img
-//           className="h-12 w-auto"
-//           src={agents} // Standard logo for all companies
-//           alt="Logo"
-//         />
-//       </div>
-
-//       {/* Heading Section */}
-//       <div className="min-w-0 mb-4">
-//         <h2 className="text-center text-xl font-bold text-white leading-tight break-words">
-//           Marketing <br /> Analysis Reports
-//         </h2>
-//       </div>
-
-//       {/* Company List */}
-//       <nav className="flex flex-1 flex-col overflow-y-auto">
-//         <ul role="list" className="flex flex-1 flex-col gap-y-4 list-none p-0">
-//           {companies.map((company) => (
-//             <li key={company._id}>
-//               <button
-//                 onClick={() => {
-//                   setCurrentCompany(company.company_name);
-//                   onCompanyClick(company.company_name); // Pass company name to parent
-//                 }}
-//                 className={`w-full ${
-//                   currentCompany === company.company_name
-//                     ? 'bg-gray-700 text-white'
-//                     : 'text-gray-400 hover:bg-gray-800 hover:text-white'
-//                 } group flex gap-x-3 items-center rounded-md py-2 px-4 text-m font-semibold leading-8`}
-//               >
-//                 {/* Standard logo or icon */}
-//                 <img src={agents} alt="Logo" className="h-6 w-6" />
-//                 {company.company_name}
-//               </button>
-//             </li>
-//           ))}
-//         </ul>
-//       </nav>
-//     </div>
-//   );
-// }
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   CalendarIcon,
   ChartPieIcon,
   DocumentDuplicateIcon,
   FolderIcon,
   UsersIcon,
-} from '@heroicons/react/outline';
+} from "@heroicons/react/outline";
 // import PipeIcon from '../assets/PipeIcon';
 // import DuctIcon from '../assets/DuctIcon';
-import agents from '../assets/agents.jpg';
+import agents from "../assets/agents.jpg";
 // pipe
 const navigation = [
-//   { name: 'Pipe Submittal', href: '/pipe-submittal', icon: PipeIcon, count: '5' },
-//   { name: 'Duct Submittal', href: '/duct-submittal', icon: DuctIcon },
+  //   { name: 'Pipe Submittal', href: '/pipe-submittal', icon: PipeIcon, count: '5' },
+  //   { name: 'Duct Submittal', href: '/duct-submittal', icon: DuctIcon },
   // { name: 'Projects', href: '/projects', icon: FolderIcon, count: '12' },
-  { name: 'Calendar', href: '/calendar', icon: CalendarIcon, count: '20+' },
-  { name: 'Documents', href: '/documents', icon: DocumentDuplicateIcon },
-  { name: 'Reports', href: '/reports', icon: ChartPieIcon },
+  { name: "Calendar", href: "/calendar", icon: CalendarIcon, count: "20+" },
+  { name: "Documents", href: "/documents", icon: DocumentDuplicateIcon },
+  { name: "Reports", href: "/reports", icon: ChartPieIcon },
 ];
 // team
 const teams = [
-  { id: 1, name: 'Heroicons', href: '/team/heroicons', initial: 'H' },
-  { id: 2, name: 'Tailwind Labs', href: '/team/tailwind-labs', initial: 'T' },
-  { id: 3, name: 'Workcation', href: '/team/workcation', initial: 'W' },
+  { id: 1, name: "Heroicons", href: "/team/heroicons", initial: "H" },
+  { id: 2, name: "Tailwind Labs", href: "/team/tailwind-labs", initial: "T" },
+  { id: 3, name: "Workcation", href: "/team/workcation", initial: "W" },
 ];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function Example() {
-  const [currentMenuItem, setCurrentMenuItem] = useState('');
+  const [currentMenuItem, setCurrentMenuItem] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
     const currentPath = location.pathname;
-    const activeMenuItem = navigation.find(item => item.href === currentPath);
-    setCurrentMenuItem(activeMenuItem ? activeMenuItem.name : '');
+    const activeMenuItem = navigation.find((item) => item.href === currentPath);
+    setCurrentMenuItem(activeMenuItem ? activeMenuItem.name : "");
   }, [location.pathname]);
 
   return (
@@ -97,11 +46,10 @@ export default function Example() {
       <div className="flex h-16 shrink-0 items-center mb-6 mt-6 px-12">
         <img
           className="h-14 w-auto"
-         src={agents}
+          src={agents}
           alt="Your Company"
 
           // className="rounded-md bg-indigo-600 mb-6 mt-2 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-
         />
       </div>
       <div className="min-w-0">
@@ -130,13 +78,16 @@ export default function Example() {
                     to={item.href}
                     className={classNames(
                       currentMenuItem === item.name
-                        ? 'bg-gray-800 text-white'
-                        : 'text-gray-400 hover:bg-gray-800 hover:text-white',
-                      'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6'
+                        ? "bg-gray-800 text-white"
+                        : "text-gray-400 hover:bg-gray-800 hover:text-white",
+                      "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6"
                     )}
                     onClick={() => setCurrentMenuItem(item.name)}
                   >
-                    <item.icon className="h-6 w-6 shrink-0" aria-hidden="true" />
+                    <item.icon
+                      className="h-6 w-6 shrink-0"
+                      aria-hidden="true"
+                    />
                     {item.name}
                     {item.count ? (
                       <span
@@ -162,9 +113,9 @@ export default function Example() {
                     to={team.href}
                     className={classNames(
                       currentMenuItem === team.name
-                        ? 'bg-gray-800 text-white'
-                        : 'text-gray-400 hover:bg-gray-800 hover:text-white',
-                      'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6'
+                        ? "bg-gray-800 text-white"
+                        : "text-gray-400 hover:bg-gray-800 hover:text-white",
+                      "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6"
                     )}
                     onClick={() => setCurrentMenuItem(team.name)}
                   >

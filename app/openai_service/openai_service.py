@@ -24,10 +24,21 @@ def get_summary(text):
         # Use the ChatCompletion endpoint for the gpt-3.5-turbo model
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant that provides concise summaries."},
-                {"role": "user", "content": f"Please provide a concise summary of the following text:\n{text}"}
-            ],
+           messages = [
+    {
+        "role": "system", 
+        "content": "You are an experienced digital marketing specialist with a strong focus on influencer marketing in the education sector. You have been connecting brands with the right influencers for over a decade, particularly in the context of promoting services that aid international students in the USA."
+    },
+    {
+        "role": "user", 
+        "content": (
+            "Your task is to generate a JSON object containing influencers' information for the company Grad Stem, which helps international students in the USA find jobs through an AI personalized resume feature tailored to job descriptions. "
+            "Please create a JSON object that includes three real influencers who have at least 20,000 followers and could effectively promote Grad Stem. For each influencer, include their name, location, and the full Instagram handle link. "
+            "Ensure that the output is well-formatted, and keep in mind the importance of providing influencers who have a relevant audience and a genuine interest in educational services for international students."
+        )
+    }
+]
+,
             max_tokens=150,
             temperature=0.7
         )
