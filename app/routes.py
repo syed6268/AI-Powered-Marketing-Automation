@@ -19,8 +19,8 @@ def analyze():
         _type_: _description_
     """    
     # Step 2: Get summary from OpenAI
-    # summary = get_detailed_summary(scrape_data)
-    summary = "jjj"
+    summary = get_detailed_summary(scrape_data)
+    #summary = "jjj"
     
     # Step 3: Get responses from Perplexity API
     responses = get_perplexity_responses(summary)
