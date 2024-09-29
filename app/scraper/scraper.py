@@ -94,5 +94,5 @@ def find_about_page(driver, base_url):
         print(f"Error finding About page: {e}")
     return None
 
-result=scrape_data("https://www.eyesopen.com/")
+result=scrape_data("https://www.hackmidwest.com/")
 print(result)
