@@ -84,7 +84,7 @@
 # url = "https://api.perplexity.ai/chat/completions"
 
 # # Function to get responses from Perplexity based on the provided summary
-# def get_perplexity_responses(summary):
+# def get_perplexit_responses(summary):
 #     """
 #     This function takes a summary string as input and uses it in the Perplexity API request payload.
 
@@ -188,15 +188,100 @@ def get_perplexity_responses(summary):
         f"{summary} "
         "Generate a JSON object containing information in six categories related to domain and location provided: "
         "Influencers, Blog Newsletter Recommendations. "
-        "For Influencers, provide three real influencer's name, location, and social Instagram handle full link. "
+        "For Influencers, provide three real influencer's name, location, and social Instagram handle full link. the keys should be name, location, social  "
         "Make sure the links work and point to the exact person. "
         "For Blog Newsletter Recommendations, give me three blogs that talk about the same objective, where I can market Grad Stem. "
-        "Give their name, URL, and contact information. "
+        "Give their name, URL, and contact information. the keys should be name, url, contact "
         "Platforms to run ads, give three platforms where I can market Grad Stem so that it reaches the target audience with URLs and a description "
-        "about how the platform can help your specific company. "
+        "about how the platform can help your specific company.the keys should be name, url, description "
         "Find three companies that can assist Grad Stem in enhancing its operational efficiency. Grad Stem is looking for service providers that specialize "
         "in helping them operate efficiently. Your recommendations should be mindful of Grad Stem's valuation and its affordability for these services. "
         "Marketing tips tailored to Grad Stem, give me three. Only JSON, no other things."
+        '''{
+  "Influencers": [
+    {
+      "name": "",
+      "location": "",
+      "social": ""
+    },
+    {
+      "name": "",
+      "location": "",
+      "social": ""
+    },
+    {
+      "name": "",
+      "location": "",
+      "social": ""
+    }
+  ],
+  "Blogs": [
+    {
+      "name": "",
+      "url": "",
+      "contact": ""
+    },
+    {
+      "name": "",
+      "url": "",
+      "contact": ""
+    },
+    {
+      "name": "",
+      "url": "",
+      "contact": ""
+    }
+  ],
+  "Platformads": [
+    {
+      "name": "",
+      "url": "",
+      "description": ""
+    },
+    {
+      "name": "",
+      "url": "",
+      "description": ""
+    },
+    {
+      "name": "",
+      "url": "",
+      "description": ""
+    }
+  ],
+  "Operationalsupport": [
+    {
+      "name": "",
+      "url": "",
+      "description": ""
+    },
+    {
+      "name": "",
+      "url": "",
+      "description": ""
+    },
+    {
+      "name": "",
+      "url": "",
+      "description": ""
+    }
+  ],
+  "Marketingtips": [
+    {
+      "tip": "",
+      "description": ""
+    },
+    {
+      "tip": "",
+      "description": ""
+    },
+    {
+      "tip": "",
+      "description": ""
+    }
+  ]
+}
+'''
     )
 
     # Payload data for the request
