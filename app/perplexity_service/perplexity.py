@@ -88,16 +88,5 @@ def get_perplexity_responses(summary):
     except Exception as e:
         return {"error": str(e)}
 
-# Run the script directly
-if __name__ == "__main__":
-    # Example summary to test the API request
-    test_summary = (
-        "The domain is education. Valuation is 1000$. The location is USA. "
-        "This is my company Grad Stem that helps international students in the USA to find jobs. "
-        "It has an AI personalized resume feature that tailors the resume based on the job description."
-    )
 
-    # Call the function and print the response
-    result = get_perplexity_responses(test_summary)
-    print(result)
 

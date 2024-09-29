@@ -1,26 +1,25 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
-from urllib.parse import urljoin
 import time
 
 def scrape_data(url):
     """
-    Scrapes the home page and about page of the given URL using Selenium.
+    Scrapes the home page of the given URL using Selenium.
     Args:
         url (str): The base URL of the website to scrape.
     Returns:
-        dict: A dictionary with the scraped data from the home page and about page.
+        dict: A dictionary with the scraped data from the home page.
     """
     data = {
-        'home_page': '',
-        'about_page': 'No About Page Found'  # Default message if no about page is found
+        'home_page': ''
     }
 
     try:
+        print(f"Starting the scraping process for URL: {url}")
+
         # Initialize Selenium WebDriver
         options = Options()
         options.add_argument('--headless')  # Run Chrome in headless mode
@@ -29,16 +28,13 @@ def scrape_data(url):
         driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
         # Scrape the home page
+        print(f"Scraping home page: {url}")
         home_page_content = scrape_page(driver, url)
         if home_page_content:
             data['home_page'] = home_page_content
-
-        # Try to find and scrape the about page
-        about_page_url = find_about_page(driver, url)
-        if about_page_url:
-            about_page_content = scrape_page(driver, about_page_url)
-            if about_page_content:
-                data['about_page'] = about_page_content
+            print(f"Home page content successfully scraped. Length: {len(home_page_content)}")
+        else:
+            print(f"Failed to scrape home page for URL: {url}")
 
         driver.quit()
 
@@ -57,41 +53,15 @@ def scrape_page(driver, url):
         str: The text content of the page.
     """
     try:
+        print(f"Loading page: {url}")
         driver.get(url)
         time.sleep(3)  # Wait for the page to fully load
         soup = BeautifulSoup(driver.page_source, 'html.parser')
 
         # Extract text content from the page, excluding scripts and styles
-        content = ' '.join([p.get_text(strip=True) for p in soup.find_all('p')])
-        return content
+        content = ' '.join([p.get_text(strip=True) for p in soup.find_all('p')])  # Only extract <p> tags
+        print(f"Content scraped from {url}. Length of content: {len(content)}")
+        return content if content else ''  # Ensure a string is returned
     except Exception as e:
         print(f"Error scraping page {url}: {e}")
-        return None
-
-def find_about_page(driver, base_url):
-    """
-    Finds the URL of the 'About' page by searching for common patterns using Selenium.
-    Args:
-        driver (webdriver): Selenium WebDriver instance.
-        base_url (str): The base URL of the website.
-    Returns:
-        str: The URL of the 'About' page, or None if not found.
-    """
-    common_about_paths = ['about', 'about-us', 'aboutus', 'who-we-are', 'our-story']
-    try:
-        driver.get(base_url)
-        time.sleep(3)  # Wait for the page to fully load
-        soup = BeautifulSoup(driver.page_source, 'html.parser')
-
-        # Look for anchor tags that may link to the About page
-        for a_tag in soup.find_all('a', href=True):
-            href = a_tag['href'].lower()
-            for path in common_about_paths:
-                if path in href:
-                    # Construct the full URL
-                    return urljoin(base_url, href)
-    except Exception as e:
-        print(f"Error finding About page: {e}")
-    return None
-
-
+        return ''  # Return an empty string in case of error
