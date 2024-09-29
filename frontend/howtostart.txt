@@ -1,0 +1,5 @@
+cd frontend
+npm i
+npm install react-router-dom
+npm install @heroicons/react
+npm install -D tailwindcss postcss autoprefixer

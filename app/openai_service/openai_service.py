@@ -25,7 +25,7 @@ def get_summary(text):
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "You are a helpful assistant that provides concise summaries like what does company do."},
+                {"role": "system", "content": "You are a helpful assistant that provides concise summaries."},
                 {"role": "user", "content": f"Please provide a concise summary of the following text:\n{text}"}
             ],
             max_tokens=150,
