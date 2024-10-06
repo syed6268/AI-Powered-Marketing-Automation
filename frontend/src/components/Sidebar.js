@@ -1,39 +1,34 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   CalendarIcon,
   ChartPieIcon,
   DocumentDuplicateIcon,
-  FolderIcon,
-  UsersIcon,
 } from "@heroicons/react/outline";
-// import PipeIcon from '../assets/PipeIcon';
-// import DuctIcon from '../assets/DuctIcon';
 import agents from "../assets/agents.jpg";
-// pipe
+
+// Navigation items
 const navigation = [
-  //   { name: 'Pipe Submittal', href: '/pipe-submittal', icon: PipeIcon, count: '5' },
-  //   { name: 'Duct Submittal', href: '/duct-submittal', icon: DuctIcon },
-  // { name: 'Projects', href: '/projects', icon: FolderIcon, count: '12' },
   { name: "Calendar", href: "/calendar", icon: CalendarIcon, count: "20+" },
   { name: "Documents", href: "/documents", icon: DocumentDuplicateIcon },
   { name: "Reports", href: "/reports", icon: ChartPieIcon },
 ];
-// team
+
+// Team items
 const teams = [
   { id: 1, name: "Heroicons", href: "/team/heroicons", initial: "H" },
   { id: 2, name: "Tailwind Labs", href: "/team/tailwind-labs", initial: "T" },
   { id: 3, name: "Workcation", href: "/team/workcation", initial: "W" },
 ];
 
+// Utility function to join class names
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
+export default function Sidebar() {
   const [currentMenuItem, setCurrentMenuItem] = useState("");
   const location = useLocation();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const currentPath = location.pathname;
@@ -42,18 +37,12 @@ export default function Example() {
   }, [location.pathname]);
 
   return (
-    <div className="flex flex-col w-64 bg-gray-900 px-6">
+    <div className="flex flex-col w-70 h-full bg-gray-900 px-6 fixed top-0 left-0">
       <div className="flex h-16 shrink-0 items-center mb-6 mt-6 px-12">
-        <img
-          className="h-14 w-auto"
-          src={agents}
-          alt="Your Company"
-
-          // className="rounded-md bg-indigo-600 mb-6 mt-2 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        />
+        <img className="h-14 w-auto" src={agents} alt="Your Company" />
       </div>
       <div className="min-w-0">
-        <h2 className="text-2xl mb-2  font-bold leading-7 text-white sm:truncate sm:text-3xl sm:tracking-tight">
+        <h2 className="text-2xl mb-2 font-bold leading-7 text-white sm:truncate sm:text-3xl sm:tracking-tight">
           2331046
         </h2>
       </div>
@@ -64,11 +53,11 @@ export default function Example() {
       </div>
       <button
         type="button"
-        className="rounded-md bg-indigo-600 mb-6 mt-2 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        className="rounded-md bg-indigo-600 mb-6 mt-2 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500"
       >
         Change Project
       </button>
-      <nav className="flex flex-1 flex-col">
+      <nav className="flex flex-1 flex-col overflow-y-auto">
         <ul role="list" className="flex flex-1 flex-col gap-y-7">
           <li>
             <ul role="list" className="-mx-2 space-y-1">
@@ -84,10 +73,7 @@ export default function Example() {
                     )}
                     onClick={() => setCurrentMenuItem(item.name)}
                   >
-                    <item.icon
-                      className="h-6 w-6 shrink-0"
-                      aria-hidden="true"
-                    />
+                    <item.icon className="h-6 w-6 shrink-0" aria-hidden="true" />
                     {item.name}
                     {item.count ? (
                       <span
