@@ -9,7 +9,7 @@ import agents from "../assets/agents.jpg";
 
 // Navigation items
 const navigation = [
-  { name: "Calendar", href: "/calendar", icon: CalendarIcon, count: "20+" },
+  { name: "Blog Generator", href: "/blog-generator", icon: CalendarIcon, count: "20+" },
   { name: "Documents", href: "/documents", icon: DocumentDuplicateIcon },
   { name: "Reports", href: "/reports", icon: ChartPieIcon },
 ];
