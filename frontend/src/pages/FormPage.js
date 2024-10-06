@@ -451,9 +451,15 @@ const FormPage = () => {
     try {
       // Send POST request to Flask backend
       const response = await axios.post("http://localhost:5000/analyze", formData);
+      console.log(response)
 
       // Destructure the response data
-      const { Blogs, Influencers, Marketingtips, Operationalsupport, Platformads } = response.data;
+      const { responses, blog_content } = response.data;
+      const { Blogs, Influencers, Marketingtips, Operationalsupport, Platformads } = responses;
+      console.log("Blog Content: ", blog_content);  // This will print the blog content to the console
+
+
+      //const { Blogs, Influencers, Marketingtips, Operationalsupport, Platformads } = response.data;
 
       // Format the data
       const formattedData = {

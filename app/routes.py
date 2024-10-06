@@ -62,10 +62,13 @@ def analyze():
         responses = "No responses available due to error"
 
     # Step 6: Return the results
+    
+    combined_response = {
+    
+        'responses': responses,  # Responses from Perplexity API
+        'blog_content': blog_content  # Blog content generated based on the summary
+    }
     print("All steps completed successfully. Returning results.")
-    return jsonify({
-         #'summary': summary,
-         'responses': responses,
-         'generate_blog':blog_content
-     })
+    return jsonify(combined_response)
+  
     #return jsonify(responses)  # Directly return the Perplexity response
