@@ -175,6 +175,7 @@ url = "https://api.perplexity.ai/chat/completions"
 
 # Function to get responses from Perplexity based on the provided summary
 def get_perplexity_responses(summary):
+    summary = json.dumps(summary)
     """
     This function takes a summary string as input and uses it in the Perplexity API request payload.
 

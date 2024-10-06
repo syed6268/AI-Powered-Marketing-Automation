@@ -87,12 +87,15 @@
 
 // export default App;
 
+// src/App.js
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import FormPage from "./pages/FormPage";
 import ResultsPage from "./pages/ResultsPage";
 import Template from "./components/Template";
+import ResultsLayout from "./pages/ResultsPage";
+import BlogGenerator from "./components/BlogGenerator"; // Import the BlogGenerator component
 
 function App() {
   return (
@@ -105,10 +108,14 @@ function App() {
         <Route path="/get-started" element={<FormPage />} />
 
         {/* Results Page with Sidebar */}
-        <Route path="/results" element={<Template />} />
+        <Route path="/results" element={<ResultsLayout />} />
+
+        {/* Blog Generator Route */}
+        <Route path="/blog-generator" element={<BlogGenerator />} /> {/* Add this line */}
       </Routes>
     </Router>
   );
 }
 
 export default App;
+
