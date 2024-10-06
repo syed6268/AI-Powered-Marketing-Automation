@@ -93,6 +93,7 @@ import LandingPage from "./pages/LandingPage";
 import FormPage from "./pages/FormPage";
 import ResultsPage from "./pages/ResultsPage";
 import Template from "./components/Template";
+import ResultsLayout from "./pages/ResultsPage";
 
 function App() {
   return (
@@ -105,7 +106,7 @@ function App() {
         <Route path="/get-started" element={<FormPage />} />
 
         {/* Results Page with Sidebar */}
-        <Route path="/results" element={<Template />} />
+        <Route path="/results" element={<ResultsLayout />} />
       </Routes>
     </Router>
   );
