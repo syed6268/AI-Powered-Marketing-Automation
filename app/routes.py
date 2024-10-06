@@ -3,6 +3,7 @@ from flask_cors import CORS
 from .scraper.scraper import scrape_data
 from .openai_service.openai_service import get_detailed_summary
 from .perplexity_service.perplexity import get_perplexity_responses
+from .openai_service.WrittenBlog import generate_blog 
 
 main = Blueprint('main', __name__)
 CORS(main)
@@ -40,8 +41,18 @@ def analyze():
     except Exception as e:
         print(f"Error during OpenAI summary generation: {e}")
         summary = "No summary available due to error"
+        
+    #step 4 get the written blog    
+    try:
+        print("Generating blog content from summary...")
+        blog_content = generate_blog(summary)
+       # blog_content=jsonify(blog_content)# Call the generate_blog function with the summary
+        print(f"Blog content generated: {blog_content}")
+    except Exception as e:
+        print(f"Error during blog generation: {e}")
+        blog_content = "No blog content available due to error"
 
-    # Step 4: Get responses from Perplexity API
+    # Step 5: Get responses from Perplexity API
     try:
         print("Sending summary to Perplexity API...")
         responses = get_perplexity_responses(summary)  # Ensure Perplexity API function handles summary
@@ -50,11 +61,11 @@ def analyze():
         print(f"Error during Perplexity API call: {e}")
         responses = "No responses available due to error"
 
-    # Step 5: Return the results
+    # Step 6: Return the results
     print("All steps completed successfully. Returning results.")
-    # return jsonify({
-    #     'summary': summary,
-    #     'responses': responses,
-    #     'scraped_data': scraped_data
-    # })
-    return jsonify(responses)  # Directly return the Perplexity response
+    return jsonify({
+         #'summary': summary,
+         'responses': responses,
+         'generate_blog':blog_content
+     })
+    #return jsonify(responses)  # Directly return the Perplexity response
